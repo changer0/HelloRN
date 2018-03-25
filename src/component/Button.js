@@ -13,11 +13,6 @@ export default class Button extends Component {
             disabled: false,
         }
     }
-    onPress = () => {
-        const { onPress } = this.props;
-        this.disable();
-        onPress(this.enable);
-    };
 
     enable = () => {
         this.setState({
@@ -40,7 +35,7 @@ export default class Button extends Component {
             <View style={styles.container}>
                 <TouchableOpacity
                     disabled={this.state.disabled}
-                    onPress={this.onPress}
+                    onPress={this.props.onPress}
                     style={[styles.button, {backgroundColor: backgroundColor}, this.state.disabled && styles.disabled]}>
                     <Text style={styles.buttonText}>{text}</Text>
                 </TouchableOpacity>

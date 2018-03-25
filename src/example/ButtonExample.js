@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 
-import Button from './src/component/Button';
+import Button from '../component/Button';
 
 export default class ButtonExample extends Component {
 
@@ -11,20 +11,17 @@ export default class ButtonExample extends Component {
     }
 
     //获取数据
-    fetchData = (enableCallBack) => {
+    fetchData = () => {
         //禁用按钮
-        //this.refs.submit.disable();
+        this.refs.submit.disable();
         alert("正在获取数据");
 
         this.timer = setTimeout(() => {
             //获取结束后启用按钮
-            //this.refs.submit.enable();
-            enableCallBack();
+            this.refs.submit.enable();
         }, 2000);
 
     }
-
-
 
     componentWillUnmount() {
         // 请注意Un"m"ount的m是小写
@@ -39,8 +36,8 @@ export default class ButtonExample extends Component {
         return (
             <View style={styles.container}>
                 {/*ref相当于Html中的id, 标记和引用组件*/}
-                <Button ref='submit' text='确定' backgroundColor='red' onPress={(enableCallBack) => {
-                    this.fetchData(enableCallBack);
+                <Button ref='submit' text='确定' backgroundColor='red' onPress={() => {
+                    this.fetchData();
                 }}/>
                 <Button text='取消' onPress={() => {
                     alert("你点击了取消");
